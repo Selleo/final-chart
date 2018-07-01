@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pipe base and series 1`] = `
+Object {
+  "chart": Object {
+    "type": "pie",
+  },
+  "plotOptions": Object {
+    "series": Object {
+      "stacked": true,
+    },
+  },
+  "series": Array [],
+  "title": Object {
+    "text": null,
+  },
+}
+`;
