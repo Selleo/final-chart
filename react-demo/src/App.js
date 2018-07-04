@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-
 import ReactHighcharts from 'react-highcharts';
 import HighchartsData from 'highcharts/modules/data';
 import HighchartsSeriesLabel from 'highcharts/modules/series-label';
 
 import './App.css';
-import { chart1 } from './charts';
+import FinalChart from './FinalChart'
+import { chart1, fetchCsv1 } from './charts';
 
 HighchartsData(ReactHighcharts.Highcharts);
 HighchartsSeriesLabel(ReactHighcharts.Highcharts);
 
 class App extends Component {
   state = {
+    params: {
+      url: window.location.origin + '/data/analytics.csv',
+    },
     chart: {
       type: 'line',
       stacking: false,
@@ -45,6 +48,13 @@ class App extends Component {
           <input type="checkbox" onChange={this._toggle('stacking')} defaultChecked={this.state.chart.stacking} />
         </div>
         <ReactHighcharts config={chart1({}, this.state)}/>
+        <FinalChart
+          config={this.state.chart}
+          params={this.state.params}
+          configPipe={chart1}
+          fetchData={fetchCsv1}
+          component={ReactHighcharts}
+        />
       </div>
     );
   }

@@ -1,5 +1,14 @@
 import { pipe } from 'final-chart';
 import ReactHighcharts from 'react-highcharts'
+import axios from 'axios';
+import Papa from 'papaparse';
+
+export const fetchCsv1 = (params) => {
+  axios(params)
+  .then(res => res.data.replace(/\n\n/g, '\n'))
+  .then(csv => Papa.parse(csv, { comments: "#" }))
+  .then(console.log)
+}
 
 const yAxis = ({left = true} = {}) => ({
   title: {
